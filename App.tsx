@@ -3,37 +3,43 @@
 ////////// APP ANDROID //////////
 
 // In App.js in a new project
-
-import * as React from 'react';
+import * as React from 'react'; 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './src/Screen/LoginScreen'; // Adjust the path if necessary
+import LoginScreen from './src/Screen/LoginScreen'; //
 import HomeScreen from './src/Screen/HomeScreen'; 
 
-const Stack = createNativeStackNavigator();
+// định nghĩa các tham số màn hình cho StackNavigator
+export type RootStackParamList = {
+  Login: undefined;
+  Home: undefined;
+};
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
 
-        <Stack.Screen name="Login" component={LoginScreen} />
-        {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen}
+          // Chỉnh sửa header loginscreen
+            options={{
+              title: 'Đăng Nhập',
+              headerTitleAlign: 'center',
+              headerTitleStyle: {
+                fontSize: 18, // Điều chỉnh kích thước chữ
+                fontWeight: 'bold', // Điều chỉnh độ đậm của chữ
+                fontFamily: 'Arial-custom-font',
+                // Nếu cần thiết, bạn có thể thêm các thuộc tính khác như fontFamily, color, ...
+              },
+            }}
+        />
+        <Stack.Screen name="Home" component={HomeScreen} />
         
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
 export default App;
-
-
-
-
-
-
-
-
-
-
-
