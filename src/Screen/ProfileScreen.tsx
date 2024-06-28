@@ -1,4 +1,3 @@
-// File: HomeScreen.tsx
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,7 +15,7 @@ type Props = {
 };
 
 // Functional component for the HomeScreen
-const HomeScreen: React.FC<Props> = ({ navigation }) => {
+const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   // Function to handle device press
   const handleDevicePress = (deviceId: number) => {
     console.log(`Device ${deviceId} pressed.`);
@@ -189,4 +188,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default ProfileScreen;

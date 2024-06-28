@@ -1,26 +1,65 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Alert,Image, TouchableOpacity ,Pressable} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { StyleSheet, View, Text, TextInput, Alert, Image, TouchableOpacity, Animated ,Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import icon từ thư viện
-import { useNavigation,NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import CheckBox from '@react-native-community/checkbox';
 
+type FadeInViewProps = {
+  children: React.ReactNode;
+};
 
-export default function LoginScreen() {
+const FadeInView: React.FC<FadeInViewProps> = ({ children }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000, // Adjust animation duration as needed
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
+  return (
+    <Animated.View // Special animatable View
+      style={{
+        opacity: fadeAnim, // Bind opacity to animated value
+      }}>
+      {children}
+    </Animated.View>
+  );
+};
+
+const LoginScreen: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberPassword, setRememberPassword] = useState(false); // State để nhớ mật khẩu
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>(); //
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handleLogin = () => {
     // Kiểm tra tên đăng nhập và mật khẩu
     if (username === 'admin' && password === '123456') {
       // Đăng nhập thành công, chuyển hướng tới trang chủ hoặc thực hiện hành động phù hợp
-      Alert.alert('Login successful', 'Welcome to the home screen!');
-      navigation.navigate('Home'); // Điều hướng đến màn hình Home
+      Alert.alert(
+        'Login successful',
+        'Đăng nhập thành công!',
+        [
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('Home'),
+            style: 'cancel',
+          },
+        ],
+        { cancelable: false }
+      );
     } else {
       // Đăng nhập không thành công, thông báo lỗi
-      Alert.alert('Login failed', 'Invalid username or password. Please try again.');
+      Alert.alert(
+        'Login failed',
+        'Username hoặc password không hợp lệ. Vui lòng thử lại.',
+        [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+        { cancelable: false }
+      );
     }
   };
 
@@ -31,14 +70,27 @@ export default function LoginScreen() {
     // navigation.navigate('ForgotPassword');
   };
 
+  const handleFacebookPress = () => {
+    // Xử lý khi nhấn vào Facebook
+    Linking.openURL('https://www.facebook.com').catch(err =>
+      console.error('Error opening Facebook URL: ', err)
+    );
+  };
+
+  const handleLinkedInPress = () => {
+    // Xử lý khi nhấn vào LinkedIn
+    Linking.openURL('https://www.linkedin.com').catch(err =>
+      console.error('Error opening LinkedIn URL: ', err)
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Image source={require('/home/nguyen/android_project/Elsa_App/assets/image/Logo_IoTVisionc_Final_01.png')} style={styles.logo} />  
-       
       <Text style={styles.bycty}>Cty TNHH Công nghệ và phát triển IoT 3DVisionLab</Text>
       {/* design textinput tederang nhap */}
       <View style={styles.inputContainer}>
-      <Icon name="user" size={25} color="#000" style={styles.icon} />
+        <Icon name="user" size={25} color="#000" style={styles.icon} />
         <TextInput
           style={styles.input}
           placeholder="Tên đăng nhập"
@@ -62,13 +114,17 @@ export default function LoginScreen() {
       </View>
 
       {/* // design nho mat khau */}
-      <View style={styles.rememberContainer}>
-        <CheckBox
-          value={rememberPassword}
-          onValueChange={setRememberPassword}
-          style={styles.checkbox}
-        />
-        <Text style={styles.rememberText}>Nhớ mật khẩu</Text>
+      <View>
+        <View style={styles.rememberContainer}>
+          <View style={styles.outerContainer}>
+            <CheckBox
+              value={rememberPassword}
+              onValueChange={setRememberPassword}
+              style={styles.checkbox}
+            />
+          </View>
+          <Text style={styles.rememberText}>Nhớ mật khẩu</Text>
+        </View>
       </View>
 
       {/* // design quen mat khau */}
@@ -77,19 +133,40 @@ export default function LoginScreen() {
       </TouchableOpacity>
 
       {/* // button login */}
-      <View style={styles.buttoncontainer}>
-        <Pressable style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Đăng nhập</Text>
+      </TouchableOpacity>
+
+      
+      <View style={styles.bottomContainer}>
+        <Text style={styles.linkText}>Liên kết với chúng tôi</Text>
+        <TouchableOpacity style={styles.iconContainer} onPress={handleFacebookPress}>
+          <Icon name="facebook-square" size={30} color="#4267B2" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconContainer} onPress={handleLinkedInPress}>
+          <Icon name="linkedin-square" size={30} color="#0077B5" />
+        </TouchableOpacity>
       </View>
-      </View>
+    </View>
   );
-}
+};
+
 const styles = StyleSheet.create({
+  outerContainer: {
+    borderWidth: 2,
+    borderRadius: 5,
+    flexDirection: 'row', // Thêm thuộc tính để căn chỉnh theo chiều ngang
+    borderColor: '#c0c0c0', // Đổi màu đường viền thành màu đỏ (ví dụ)
+  },
+  
+  checkbox: {
+    alignSelf: 'center'
+    
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start', // Thay đổi để căn chỉnh từ đầu màn hình
-    alignItems: 'center',
+    alignItems: 'flex-start',
     backgroundColor: '#fff',
     paddingHorizontal: 20,
     paddingTop: 50, // Thêm khoảng cách từ đầu màn hình xuống
@@ -130,48 +207,64 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingTop: 2,
     paddingBottom: 5,
+    alignSelf: 'center', // Căn giữa theo chiều ngang
   },
   rememberContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
-    borderColor: '#ccc',
+    borderColor: '#000',
+    
   },
   rememberText: {
     color: 'black',
     paddingBottom: 1,
-    marginRight: 10
+    marginLeft: 5, // Khoảng cách giữa checkbox và chữ
   },
   forgotPassword: {
-    marginTop: 10,
+    alignSelf: 'center', // Align text in the center horizontally
+    marginTop: 5,
     color: 'black',
     textDecorationLine: 'underline',
     paddingBottom: 10,
   },
-  checkbox:{
-    width: 30,
-    height: 10,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 5,    
-  },
+
   button: {
     backgroundColor: '#1E90FF', // Màu nền của nút
-    padding: 20, // Khoảng cách bên trong
-    borderRadius: 8, // Bo góc
+    padding: 5, // Khoảng cách bên trong
+    borderRadius: 5, // Bo góc
     alignItems: 'center', // Căn giữa nội dung theo chiều ngang
     justifyContent: 'center', // Căn giữa nội dung theo chiều dọc
-    flex: 1,
-    marginHorizontal: 100, // Khoảng cách hai bên của nút
+    width:'100%',
+    shadowColor: '#000', // Màu đổ bóng
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 5, // Độ nổi của bóng đổ (elevation)
   },
   buttonText: {
     color: 'white', // Màu chữ
-    fontSize: 14, // Kích thước chữ
+    fontSize: 16, // Kích thước chữ
     fontWeight: 'bold', // Độ đậm chữ
   },
-  buttoncontainer: {
-    flex: 1,
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 8, // Khoảng cách từ dưới lên
+    flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%',
+    alignItems: 'baseline',
+    marginLeft: 75, // Thêm marginLeft để di chuyển sang phải
+    
+  },
+  iconContainer: {
+    marginHorizontal: 5,
+    
+  },
+  linkText: {
+    color: 'gray',
+    fontSize: 14,
+    fontFamily: 'Arial',
+    
   },
 });
+
+export default LoginScreen;
