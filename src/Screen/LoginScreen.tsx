@@ -36,7 +36,7 @@ const LoginScreen: React.FC = () => {
   const [rememberPassword, setRememberPassword] = useState(false); // State để nhớ mật khẩu
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-  const handleLogin = () => {
+  const handleDangnhap = () => {
     // Kiểm tra tên đăng nhập và mật khẩu
     if (username === 'admin' && password === '123456') {
       // Đăng nhập thành công, chuyển hướng tới trang chủ hoặc thực hiện hành động phù hợp
@@ -63,13 +63,24 @@ const LoginScreen: React.FC = () => {
     }
   };
 
-  const handleForgotPassword = () => {
+  const handleQuenmatkhau = () => {
     // Xử lý khi người dùng nhấn vào liên kết quên mật khẩu
     Alert.alert('Forgot Password', 'Navigate to Forgot Password screen.');
     // Thực hiện điều hướng đến màn hình quên mật khẩu nếu có
     // navigation.navigate('ForgotPassword');
   };
-
+  const handleGoogle = () => {
+    // Xử lý khi người dùng nhấn vào liên kết quên mật khẩu
+    Alert.alert('Forgot Password', 'Navigate to Forgot Password screen.');
+    // Thực hiện điều hướng đến màn hình quên mật khẩu nếu có
+    // navigation.navigate('ForgotPassword');
+  };
+  const handleDangky = () => {
+    // Xử lý khi người dùng nhấn vào liên kết quên mật khẩu
+    Alert.alert('Forgot Password', 'Navigate to Forgot Password screen.');
+    // Thực hiện điều hướng đến màn hình quên mật khẩu nếu có
+    // navigation.navigate('ForgotPassword');
+  };
   const handleFacebookPress = () => {
     // Xử lý khi nhấn vào Facebook
     Linking.openURL('https://www.facebook.com').catch(err =>
@@ -114,7 +125,7 @@ const LoginScreen: React.FC = () => {
       </View>
 
       {/* // design nho mat khau */}
-      <View>
+      <View style={styles.rememberAndForgotContainer}>
         <View style={styles.rememberContainer}>
           <View style={styles.outerContainer}>
             <CheckBox
@@ -125,27 +136,39 @@ const LoginScreen: React.FC = () => {
           </View>
           <Text style={styles.rememberText}>Nhớ mật khẩu</Text>
         </View>
+      {/* // design quen mat khau */}
+        <TouchableOpacity onPress={handleQuenmatkhau}>
+          <Text style={styles.forgotPassword}>Quên mật khẩu?</Text>
+        </TouchableOpacity>
       </View>
 
-      {/* // design quen mat khau */}
-      <TouchableOpacity onPress={handleForgotPassword}>
-        <Text style={styles.forgotPassword}>Quên mật khẩu ?</Text>
+      {/* // design dang ky */}
+      <TouchableOpacity onPress={handleDangky}>
+        <Text style={styles.forgotPassword}>Đăng ký</Text>
       </TouchableOpacity>
 
-      {/* // button login */}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      {/* // button dang nhap */}
+      <TouchableOpacity style={styles.buttonLogin} onPress={handleDangnhap}>
         <Text style={styles.buttonText}>Đăng nhập</Text>
       </TouchableOpacity>
 
-      
+      {/* // button login google */}
+      <TouchableOpacity style={styles.buttonGoogle} onPress={handleGoogle}>
+        <Text style={styles.buttonText}>Đăng nhập bằng Google</Text>
+      </TouchableOpacity>
+      {/* // design icon lien ket voi chung toi */}
       <View style={styles.bottomContainer}>
+
         <Text style={styles.linkText}>Liên kết với chúng tôi</Text>
+          
         <TouchableOpacity style={styles.iconContainer} onPress={handleFacebookPress}>
           <Icon name="facebook-square" size={30} color="#4267B2" />
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.iconContainer} onPress={handleLinkedInPress}>
           <Icon name="linkedin-square" size={30} color="#0077B5" />
         </TouchableOpacity>
+
       </View>
     </View>
   );
@@ -169,7 +192,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: '#fff',
     paddingHorizontal: 20,
-    paddingTop: 50, // Thêm khoảng cách từ đầu màn hình xuống
+    paddingTop: 18, // Thêm khoảng cách từ đầu màn hình xuống
   },
   bycty:{
     color: 'gray',
@@ -209,6 +232,14 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     alignSelf: 'center', // Căn giữa theo chiều ngang
   },
+   rememberAndForgotContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 10,
+    
+  },
   rememberContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -219,16 +250,19 @@ const styles = StyleSheet.create({
     color: 'black',
     paddingBottom: 1,
     marginLeft: 5, // Khoảng cách giữa checkbox và chữ
+    fontFamily: 'Time New Roman',
   },
   forgotPassword: {
     alignSelf: 'center', // Align text in the center horizontally
     marginTop: 5,
     color: 'black',
-    textDecorationLine: 'underline',
     paddingBottom: 10,
+    fontWeight: 'bold',
+    fontFamily: 'Time New Roman',
+    textDecorationLine: 'underline',
   },
 
-  button: {
+  buttonLogin: {
     backgroundColor: '#1E90FF', // Màu nền của nút
     padding: 5, // Khoảng cách bên trong
     borderRadius: 5, // Bo góc
@@ -241,6 +275,20 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 5, // Độ nổi của bóng đổ (elevation)
   },
+   buttonGoogle: {
+    backgroundColor: '#ff7f50', // Màu nền của nút
+    padding: 5, // Khoảng cách bên trong
+    borderRadius: 5, // Bo góc
+    alignItems: 'center', // Căn giữa nội dung theo chiều ngang
+    justifyContent: 'center', // Căn giữa nội dung theo chiều dọc
+    width:'100%',
+    shadowColor: '#000', // Màu đổ bóng
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 5, // Độ nổi của bóng đổ (elevation)
+    marginTop: 10,
+   },
   buttonText: {
     color: 'white', // Màu chữ
     fontSize: 16, // Kích thước chữ

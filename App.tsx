@@ -45,11 +45,77 @@ function App() {
               },
             }}
         />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Charts" component={ChartsScreen} />
-        <Stack.Screen name="OtherScreen2" component={OtherScreen2} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{
+                title: 'Home',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                  fontSize: 16, // Điều chỉnh kích thước chữ
+                  fontWeight: 'bold', // Điều chỉnh độ đậm của chữ
+                  fontFamily: 'Arial-custom-font',
+                  // Nếu cần thiết, bạn có thể thêm các thuộc tính khác như fontFamily, color, ...
+                },
+          }}
+        />
+        <Stack.Screen
+          name="Charts" 
+          component={ChartsScreen} 
+          options={{
+                title: 'Charts',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                  fontSize: 16, // Điều chỉnh kích thước chữ
+                  fontWeight: 'bold', // Điều chỉnh độ đậm của chữ
+                  fontFamily: 'Arial-custom-font',
+                  // Nếu cần thiết, bạn có thể thêm các thuộc tính khác như fontFamily, color, ...
+                },
+          }}
+        />
+        <Stack.Screen 
+          name="OtherScreen2" 
+          component={OtherScreen2} 
+          options={{
+                title: 'OtherScreen2',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                  fontSize: 16, // Điều chỉnh kích thước chữ
+                  fontWeight: 'bold', // Điều chỉnh độ đậm của chữ
+                  fontFamily: 'Arial-custom-font',
+                  // Nếu cần thiết, bạn có thể thêm các thuộc tính khác như fontFamily, color, ...
+                },
+          }}
+        />
+        <Stack.Screen 
+          name="Profile" 
+          component={ProfileScreen} 
+          options={{
+                title: 'Profile',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                  fontSize: 16, // Điều chỉnh kích thước chữ
+                  fontWeight: 'bold', // Điều chỉnh độ đậm của chữ
+                  fontFamily: 'Arial-custom-font',
+                  // Nếu cần thiết, bạn có thể thêm các thuộc tính khác như fontFamily, color, ...
+                },
+          }}
+        />
+        <Stack.Screen 
+          name="Settings" 
+          component={SettingsScreen} 
+          options={{
+                title: 'Settings',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                  fontSize: 16, // Điều chỉnh kích thước chữ
+                  fontWeight: 'bold', // Điều chỉnh độ đậm của chữ
+                  fontFamily: 'Arial-custom-font',
+                  // Nếu cần thiết, bạn có thể thêm các thuộc tính khác như fontFamily, color, ...
+                },
+          }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
