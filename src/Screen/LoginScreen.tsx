@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, View, Text, TextInput, Alert, Image, TouchableOpacity, Animated ,Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import icon từ thư viện
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import CheckBox from '@react-native-community/checkbox';
@@ -35,6 +36,32 @@ const LoginScreen: React.FC = () => {
   const [password, setPassword] = useState('');
   const [rememberPassword, setRememberPassword] = useState(false); // State để nhớ mật khẩu
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  // Load "Nhớ mật khẩu" từ AsyncStorage khi màn hình LoginScreen được hiển thị
+  useEffect(() => {
+    const loadRememberPassword = async () => {
+      try {
+        const remember = await AsyncStorage.getItem('rememberPassword');
+        if (remember !== null) {
+          setRememberPassword(JSON.parse(remember));
+        }
+      } catch (error) {
+        console.error('Error loading remember password:', error);
+      }
+    };
+    loadRememberPassword();
+  }, []);
+
+  // Lưu giá trị "Nhớ mật khẩu" vào AsyncStorage khi người dùng thay đổi checkbox
+  useEffect(() => {
+    const saveRememberPassword = async () => {
+      try {
+        await AsyncStorage.setItem('rememberPassword', JSON.stringify(rememberPassword));
+      } catch (error) {
+        console.error('Error saving remember password:', error);
+      }
+    };
+    saveRememberPassword();
+  }, [rememberPassword]);
 
   const handleDangnhap = () => {
     // Kiểm tra tên đăng nhập và mật khẩu
@@ -73,13 +100,13 @@ const LoginScreen: React.FC = () => {
     // Xử lý khi người dùng nhấn vào liên kết quên mật khẩu
     Alert.alert('Forgot Password', 'Navigate to Forgot Password screen.');
     // Thực hiện điều hướng đến màn hình quên mật khẩu nếu có
-    // navigation.navigate('ForgotPassword');
+    // navigation.navigate('Register');
   };
   const handleDangky = () => {
     // Xử lý khi người dùng nhấn vào liên kết quên mật khẩu
-    Alert.alert('Forgot Password', 'Navigate to Forgot Password screen.');
+    Alert.alert('Register', 'Navigate to Forgot Password screen.');
     // Thực hiện điều hướng đến màn hình quên mật khẩu nếu có
-    // navigation.navigate('ForgotPassword');
+    // navigation.navigate('Register');
   };
   const handleFacebookPress = () => {
     // Xử lý khi nhấn vào Facebook
