@@ -114,24 +114,26 @@ const LoginScreen: React.FC = () => {
 
       // Đăng nhập vào Firebase với credential của Google
       await auth().signInWithCredential(googleCredential);
-
+      // Đăng nhập thành công, chuyển hướng tới màn hình Home
+      navigation.navigate('Home');
+      
       // Đăng nhập thành công, xử lý tiếp theo
       console.log('Logged in user:', auth().currentUser);
       // Chuyển hướng hoặc thực hiện hành động phù hợp sau khi đăng nhập thành công
-    } catch (error) {
-      // if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-      //   // Người dùng huỷ đăng nhập
-      //   console.log('Google login cancelled');
-      // } else if (error.code === statusCodes.IN_PROGRESS) {
-      //   // Đang xử lý đăng nhập
-      //   console.log('Google login in progress');
-      // } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-      //   // Google Play Services không khả dụng
-      //   console.log('Google Play Services not available');
-      // } else {
-      //   // Xử lý lỗi đăng nhập Google khác
-      //   console.error('Google login error:', error.message);
-      // }
+    } catch (error: any) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // Người dùng huỷ đăng nhập
+        console.log('Google login cancelled');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // Đang xử lý đăng nhập
+        console.log('Google login in progress');
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // Google Play Services không khả dụng
+        console.log('Google Play Services not available');
+      } else {
+        // Xử lý lỗi đăng nhập Google khác
+        console.error('Google login error:', error.message);
+      }
     }
   };
   const handleDangky = () => {
