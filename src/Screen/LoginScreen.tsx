@@ -5,6 +5,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
 import CheckBox from '@react-native-community/checkbox';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
+
 
 type FadeInViewProps = {
   children: React.ReactNode;
@@ -31,11 +34,18 @@ const FadeInView: React.FC<FadeInViewProps> = ({ children }) => {
   );
 };
 
+
 const LoginScreen: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberPassword, setRememberPassword] = useState(false); // State để nhớ mật khẩu
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  useEffect(() => {
+  GoogleSignin.configure({
+    webClientId: '1079369918873-sehja51vgbf0qetcmfq9arj8clqprff4.apps.googleusercontent.com', // Thay YOUR_WEB_CLIENT_ID bằng Client ID của bạn từ Google Developer Console
+  });
+}, []);
+
   // Load "Nhớ mật khẩu" từ AsyncStorage khi màn hình LoginScreen được hiển thị
   useEffect(() => {
     const loadRememberPassword = async () => {
@@ -96,11 +106,33 @@ const LoginScreen: React.FC = () => {
     // Thực hiện điều hướng đến màn hình quên mật khẩu nếu có
     // navigation.navigate('ForgotPassword');
   };
-  const handleGoogle = () => {
-    // Xử lý khi người dùng nhấn vào liên kết quên mật khẩu
-    Alert.alert('Forgot Password', 'Navigate to Forgot Password screen.');
-    // Thực hiện điều hướng đến màn hình quên mật khẩu nếu có
-    // navigation.navigate('Register');
+  const handleGoogleLogin = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
+
+      // Đăng nhập vào Firebase với credential của Google
+      await auth().signInWithCredential(googleCredential);
+
+      // Đăng nhập thành công, xử lý tiếp theo
+      console.log('Logged in user:', auth().currentUser);
+      // Chuyển hướng hoặc thực hiện hành động phù hợp sau khi đăng nhập thành công
+    } catch (error) {
+      // if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      //   // Người dùng huỷ đăng nhập
+      //   console.log('Google login cancelled');
+      // } else if (error.code === statusCodes.IN_PROGRESS) {
+      //   // Đang xử lý đăng nhập
+      //   console.log('Google login in progress');
+      // } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      //   // Google Play Services không khả dụng
+      //   console.log('Google Play Services not available');
+      // } else {
+      //   // Xử lý lỗi đăng nhập Google khác
+      //   console.error('Google login error:', error.message);
+      // }
+    }
   };
   const handleDangky = () => {
     // Xử lý khi người dùng nhấn vào liên kết quên mật khẩu
@@ -180,9 +212,15 @@ const LoginScreen: React.FC = () => {
       </TouchableOpacity>
 
       {/* // button login google */}
-      <TouchableOpacity style={styles.buttonGoogle} onPress={handleGoogle}>
-        <Text style={styles.buttonText}>Đăng nhập bằng Google</Text>
-      </TouchableOpacity>
+      <View style={styles.containerLoginGoogle}>
+        <GoogleSigninButton
+          style={styles.googleButton}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Light}
+          onPress={handleGoogleLogin}
+          disabled={false}
+        />
+      </View>
       {/* // design icon lien ket voi chung toi */}
       <View style={styles.bottomContainer}>
 
@@ -201,7 +239,22 @@ const LoginScreen: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
+  containerLoginGoogle:{
+    alignItems: 'center',
+    paddingTop: 8,
+    paddingHorizontal: 25,
+  },
+  googleButton: {
+    width: 300,
+    height: 53,    
+    shadowColor: '#000', // Màu đổ bóng
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 5, // Độ nổi của bóng đổ (elevation)
+  },
   outerContainer: {
     borderWidth: 2,
     borderRadius: 5,
@@ -300,7 +353,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
-    elevation: 5, // Độ nổi của bóng đổ (elevation)
   },
    buttonGoogle: {
     backgroundColor: '#ff7f50', // Màu nền của nút
