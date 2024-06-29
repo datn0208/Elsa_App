@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1079369918873",
+    "project_id": "elsaapp2024",
+    "storage_bucket": "elsaapp2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079369918873:android:2e5a6814296f9fd971cb08",
+        "android_client_info": {
+          "package_name": "com.elsa_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079369918873-m8v9k7rid97t0p1d2aesoa2oddakm6aq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elsa_app",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1079369918873-sehja51vgbf0qetcmfq9arj8clqprff4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3pXAFP65M2kEtE0i9z5prYPK1j4pld2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079369918873-sehja51vgbf0qetcmfq9arj8clqprff4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

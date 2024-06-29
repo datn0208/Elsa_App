@@ -13,6 +13,8 @@ import OtherScreen2 from './src/Screen/OtherScreen2';
 import ProfileScreen from './src/Screen/ProfileScreen';
 import SettingsScreen from './src/Screen/SettingsScreen';
 
+
+
 // định nghĩa các tham số màn hình cho StackNavigator
 export type RootStackParamList = {
   Login: undefined;

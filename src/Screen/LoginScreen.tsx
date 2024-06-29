@@ -7,7 +7,7 @@ import { RootStackParamList } from '../../App';
 import CheckBox from '@react-native-community/checkbox';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
-
+import firebase from '@react-native-firebase/app';
 
 type FadeInViewProps = {
   children: React.ReactNode;
@@ -33,7 +33,19 @@ const FadeInView: React.FC<FadeInViewProps> = ({ children }) => {
     </Animated.View>
   );
 };
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+  measurementId: "YOUR_MEASUREMENT_ID"
+};
 
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const LoginScreen: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -116,10 +128,6 @@ const LoginScreen: React.FC = () => {
       await auth().signInWithCredential(googleCredential);
       // Đăng nhập thành công, chuyển hướng tới màn hình Home
       navigation.navigate('Home');
-      
-      // Đăng nhập thành công, xử lý tiếp theo
-      console.log('Logged in user:', auth().currentUser);
-      // Chuyển hướng hoặc thực hiện hành động phù hợp sau khi đăng nhập thành công
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // Người dùng huỷ đăng nhập
@@ -245,12 +253,14 @@ const LoginScreen: React.FC = () => {
 const styles = StyleSheet.create({
   containerLoginGoogle:{
     alignItems: 'center',
-    paddingTop: 8,
-    paddingHorizontal: 25,
+    paddingTop: 5,
+    
   },
   googleButton: {
-    width: 300,
-    height: 53,    
+    width: 350,
+    height: 55,    
+    alignItems: 'center',
+    
     shadowColor: '#000', // Màu đổ bóng
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -271,16 +281,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start', // Thay đổi để căn chỉnh từ đầu màn hình
-    alignItems: 'flex-start',
+    alignItems: 'center',
     backgroundColor: '#fff',
     paddingHorizontal: 20,
     paddingTop: 18, // Thêm khoảng cách từ đầu màn hình xuống
   },
   bycty:{
     color: 'gray',
-    textAlign: 'center',
     marginBottom: 20,
     lineHeight: 20, // Khoảng cách dòng
+    textAlign: 'center',
   },
   header: {
     fontSize: 28,
@@ -346,30 +356,13 @@ const styles = StyleSheet.create({
 
   buttonLogin: {
     backgroundColor: '#1E90FF', // Màu nền của nút
-    padding: 5, // Khoảng cách bên trong
     borderRadius: 5, // Bo góc
     alignItems: 'center', // Căn giữa nội dung theo chiều ngang
     justifyContent: 'center', // Căn giữa nội dung theo chiều dọc
-    width:'100%',
-    shadowColor: '#000', // Màu đổ bóng
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
+    width: 350,
+    height: 50, 
   },
-   buttonGoogle: {
-    backgroundColor: '#ff7f50', // Màu nền của nút
-    padding: 5, // Khoảng cách bên trong
-    borderRadius: 5, // Bo góc
-    alignItems: 'center', // Căn giữa nội dung theo chiều ngang
-    justifyContent: 'center', // Căn giữa nội dung theo chiều dọc
-    width:'100%',
-    shadowColor: '#000', // Màu đổ bóng
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 5, // Độ nổi của bóng đổ (elevation)
-    marginTop: 10,
-   },
+  
   buttonText: {
     color: 'white', // Màu chữ
     fontSize: 16, // Kích thước chữ
