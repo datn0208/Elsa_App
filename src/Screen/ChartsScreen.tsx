@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,ScrollView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { LineChart } from 'react-native-chart-kit';
 
-
-// Define props for the HomeScreen component
+// Define props for the ChartsScreen component
 type Props = {
   navigation: any; // Replace with specific navigation prop type if available
 };
 
-// Functional component for the HomeScreen
+// Functional component for the ChartsScreen
 const ChartsScreen: React.FC<Props> = ({ navigation }) => {
   
   // Function to truncate text if too long
@@ -17,7 +16,6 @@ const ChartsScreen: React.FC<Props> = ({ navigation }) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
   };
-
 
   const [chartWidth, setChartWidth] = useState(Dimensions.get('window').width - 40);
 
@@ -34,6 +32,7 @@ const ChartsScreen: React.FC<Props> = ({ navigation }) => {
     //   Dimensions.removeEventListener('change', updateDimensions);
     // };
   }, []); // Empty dependency array ensures the effect runs only once on mount
+
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June'],
     datasets: [
@@ -45,10 +44,6 @@ const ChartsScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxx BEGIN HIỂN THỊ TIME CHART
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
-
       {/* Scrollable area for charts */}
       <ScrollView contentContainerStyle={styles.chartContainer}>
         {/* Line Chart */}
@@ -155,31 +150,9 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
           />
         </View>
       </ScrollView>
-{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxx END TIME HIỂN THỊ CHART
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
 
-{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxx BEGIN HIỂN THỊ NÚT ĐIỀU HƯỚNG 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
       {/* Navigation buttons */}
       <View style={styles.bottomNavigation}>
-        {/* Chart navigation button */}
-        <TouchableOpacity
-          style={styles.navigationButton}
-          onPress={() => navigation.navigate('Charts')}>
-          <Icon name="bar-chart" size={24} color="#ff6347" />
-          <Text style={styles.navigationButtonText}>Charts</Text>
-        </TouchableOpacity>
-
-        {/* OtherScreen2 navigation button */}
-        <TouchableOpacity
-          style={styles.navigationButton}
-          onPress={() => navigation.navigate('Alarm')}>
-          <Icon name="bell" size={20} color="#fff" />
-          <Text style={styles.navigationButtonText}>Alarm</Text>
-        </TouchableOpacity>
-
         {/* Home navigation button */}
         <View style={styles.centeredNavigationButton}>
           <TouchableOpacity
@@ -188,6 +161,22 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
             <Icon name="home" size={22} color="#4267B2" />
           </TouchableOpacity>
         </View>
+
+        {/* Charts navigation button */}
+        <TouchableOpacity
+          style={styles.navigationButton}
+          onPress={() => navigation.navigate('Charts')}>
+          <Icon name="bar-chart" size={24} color="#ff6347" />
+          <Text style={styles.navigationButtonText}>Charts</Text>
+        </TouchableOpacity>
+
+        {/* Alarm navigation button */}
+        <TouchableOpacity
+          style={styles.navigationButton}
+          onPress={() => navigation.navigate('Alarm')}>
+          <Icon name="bell" size={20} color="#fff" />
+          <Text style={styles.navigationButtonText}>Alarm</Text>
+        </TouchableOpacity>
 
         {/* Profile navigation button */}
         <TouchableOpacity
@@ -205,14 +194,11 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
           <Text style={styles.navigationButtonText}>Settings</Text>
         </TouchableOpacity>
       </View>
-{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxx END HIỂN THỊ NÚT ĐIỀU HƯỚNG 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
     </View>
   );
 };
 
-// Styles for the HomeScreen component
+// Styles for the ChartsScreen component
 const styles = StyleSheet.create({
   chartContainer: {
     flexGrow: 1,
@@ -246,48 +232,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f9f9f9',
     paddingHorizontal: 20, // Horizontal padding for the container
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20, // Margin bottom for the title
-    color: '#333',
-  },
-  deviceContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginBottom: 20, // Margin bottom for the device list container
-  },
-  deviceItem: {
-    backgroundColor: '#fff',
-    paddingHorizontal: 20, // Horizontal padding for each device item
-    paddingVertical: 10, // Vertical padding for each device item
-    margin: 10, // Margin around each device item
-    width: 100, // Width of each device item
-    height: 100, // Height of each device item
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10, // Border radius for each device item
-    borderWidth: 1, // Border width for each device item
-    borderColor: '#ccc', // Border color for each device item
-    shadowColor: '#000', // Shadow color for each device item
-    shadowOffset: { width: 0, height: 2 }, // Shadow offset for each device item
-    shadowOpacity: 0.3, // Shadow opacity for each device item
-    shadowRadius: 2, // Shadow radius for each device item
-    elevation: 5, // Elevation for Android shadow
-  },
-  deviceName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#555',
-    textAlign: 'center',
-  },
-  deviceStatus: {
-    fontSize: 14,
-    color: '#777',
-    textAlign: 'center',
   },
   bottomNavigation: {
     flexDirection: 'row',

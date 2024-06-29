@@ -1,4 +1,3 @@
-// File: HomeScreen.tsx
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -14,22 +13,6 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     <View style={styles.container}>
       {/* Navigation buttons */}
       <View style={styles.bottomNavigation}>
-        {/* Chart navigation button */}
-        <TouchableOpacity
-          style={styles.navigationButton}
-          onPress={() => navigation.navigate('Charts')}>
-          <Icon name="bar-chart" size={20} color="#fff" />
-          <Text style={styles.navigationButtonText}>Charts</Text>
-        </TouchableOpacity>
-
-        {/* OtherScreen2 navigation button */}
-        <TouchableOpacity
-          style={styles.navigationButton}
-          onPress={() => navigation.navigate('Alarm')}>
-          <Icon name="bell" size={20} color="#fff" />
-          <Text style={styles.navigationButtonText}>Alarm</Text>
-        </TouchableOpacity>
-
         {/* Home navigation button */}
         <View style={styles.centeredNavigationButton}>
           <TouchableOpacity
@@ -38,6 +21,22 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             <Icon name="home" size={26} color="#ff6347" />
           </TouchableOpacity>
         </View>
+
+        {/* Charts navigation button */}
+        <TouchableOpacity
+          style={styles.navigationButton}
+          onPress={() => navigation.navigate('Charts')}>
+          <Icon name="bar-chart" size={20} color="#fff" />
+          <Text style={styles.navigationButtonText}>Charts</Text>
+        </TouchableOpacity>
+
+        {/* Alarm navigation button */}
+        <TouchableOpacity
+          style={styles.navigationButton}
+          onPress={() => navigation.navigate('Alarm')}>
+          <Icon name="bell" size={20} color="#fff" />
+          <Text style={styles.navigationButtonText}>Alarm</Text>
+        </TouchableOpacity>
 
         {/* Profile navigation button */}
         <TouchableOpacity
@@ -106,3 +105,4 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
+
