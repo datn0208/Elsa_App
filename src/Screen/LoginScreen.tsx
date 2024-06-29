@@ -87,7 +87,7 @@ const LoginScreen: React.FC = () => {
 
   const handleDangnhap = () => {
     // Kiểm tra tên đăng nhập và mật khẩu
-    if (username === 'admin' && password === '123456') {
+    if (username === 'admin' && password === 'admin') {
       // Đăng nhập thành công, chuyển hướng tới trang chủ hoặc thực hiện hành động phù hợp
       Alert.alert(
         'Login successful',
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
   },
 
   buttonLogin: {
-    backgroundColor: '#4267B2', // Màu nền của nút
+    backgroundColor: '#1E90FF', // Màu nền của nút
     borderRadius: 5, // Bo góc
     alignItems: 'center', // Căn giữa nội dung theo chiều ngang
     justifyContent: 'center', // Căn giữa nội dung theo chiều dọc

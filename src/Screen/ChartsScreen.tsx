@@ -51,7 +51,7 @@ const ChartsScreen: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.chartTitle}>Temperature Trends</Text>
           <LineChart
             data={data}
-            width={chartWidth}
+            width={300}
             height={200}
             chartConfig={{
               backgroundColor: '#f9f9f9',
