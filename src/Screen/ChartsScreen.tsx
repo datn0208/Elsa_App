@@ -1,13 +1,8 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity,ScrollView, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { LineChart } from 'react-native-chart-kit';
 
-// Define the type for device objects
-type Device = {
-  id: number;
-  name: string;
-  status: 'ON' | 'OFF'; // Status can only be 'ON' or 'OFF'
-};
 
 // Define props for the HomeScreen component
 type Props = {
@@ -16,59 +11,173 @@ type Props = {
 
 // Functional component for the HomeScreen
 const ChartsScreen: React.FC<Props> = ({ navigation }) => {
-  // Function to handle device press
-  const handleDevicePress = (deviceId: number) => {
-    console.log(`Device ${deviceId} pressed.`);
-  };
-
-  // Sample device list
-  const devices: Device[] = [
-    { id: 1, name: 'Device 1', status: 'ON' },
-    { id: 2, name: 'Device 2', status: 'OFF' },
-    { id: 3, name: 'Device 3', status: 'ON' },
-    { id: 4, name: 'Device 4', status: 'OFF' },
-  ];
-
+  
   // Function to truncate text if too long
   const truncateText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
   };
 
+
+  const [chartWidth, setChartWidth] = useState(Dimensions.get('window').width - 40);
+
+  const updateDimensions = () => {
+    setChartWidth(Dimensions.get('window').width - 40);
+  };
+
+  useEffect(() => {
+    // Add event listener on component mount
+    Dimensions.addEventListener('change', updateDimensions);
+
+    // // Return cleanup function to remove event listener
+    // return () => {
+    //   Dimensions.removeEventListener('change', updateDimensions);
+    // };
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+  const data = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [
+      {
+        data: [20, 45, 28, 80, 99, 43],
+      },
+    ],
+  };
+
   return (
     <View style={styles.container}>
-      {/* Title of the HomeScreen */}
-      <Text style={styles.title}>Home Screen - Control & Monitor</Text>
+{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxx BEGIN HIỂN THỊ TIME CHART
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
 
-      {/* Device list */}
-      <View style={styles.deviceContainer}>
-        {devices.map((device) => (
-          <TouchableOpacity
-            key={device.id}
-            style={styles.deviceItem}
-            onPress={() => handleDevicePress(device.id)}>
-            <Text style={styles.deviceName}>{device.name}</Text>
-            <Text style={styles.deviceStatus}>Status: {device.status}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      {/* Scrollable area for charts */}
+      <ScrollView contentContainerStyle={styles.chartContainer}>
+        {/* Line Chart */}
+        <View style={styles.chart}>
+          <Text style={styles.chartTitle}>Temperature Trends</Text>
+          <LineChart
+            data={data}
+            width={chartWidth}
+            height={200}
+            chartConfig={{
+              backgroundColor: '#f9f9f9',
+              backgroundGradientFrom: '#fff',
+              backgroundGradientTo: '#fff',
+              decimalPlaces: 0,
+              color: (opacity = 1) => `rgba(30, 144, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16,
+            }}
+          />
+        </View>
 
+        {/* Line Chart */}
+        <View style={styles.chart}>
+          <Text style={styles.chartTitle}>Temperature Trends</Text>
+          <LineChart
+            data={data}
+            width={300}
+            height={200}
+            chartConfig={{
+              backgroundColor: '#f9f9f9',
+              backgroundGradientFrom: '#fff',
+              backgroundGradientTo: '#fff',
+              decimalPlaces: 0,
+              color: (opacity = 1) => `rgba(30, 144, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16,
+            }}
+          />
+        </View>
+
+        {/* Line Chart */}
+        <View style={styles.chart}>
+          <Text style={styles.chartTitle}>Temperature Trends</Text>
+          <LineChart
+            data={data}
+            width={300}
+            height={200}
+            chartConfig={{
+              backgroundColor: '#f9f9f9',
+              backgroundGradientFrom: '#fff',
+              backgroundGradientTo: '#fff',
+              decimalPlaces: 0,
+              color: (opacity = 1) => `rgba(30, 144, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16,
+            }}
+          />
+        </View>
+
+        {/* Line Chart */}
+        <View style={styles.chart}>
+          <Text style={styles.chartTitle}>Temperature Trends</Text>
+          <LineChart
+            data={data}
+            width={300}
+            height={200}
+            chartConfig={{
+              backgroundColor: '#f9f9f9',
+              backgroundGradientFrom: '#fff',
+              backgroundGradientTo: '#fff',
+              decimalPlaces: 0,
+              color: (opacity = 1) => `rgba(30, 144, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16,
+            }}
+          />
+        </View>
+      </ScrollView>
+{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxx END TIME HIỂN THỊ CHART
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
+
+{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxx BEGIN HIỂN THỊ NÚT ĐIỀU HƯỚNG 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
       {/* Navigation buttons */}
       <View style={styles.bottomNavigation}>
         {/* Chart navigation button */}
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Charts')}>
-          <Icon name="bar-chart" size={24} color="#fff" />
+          <Icon name="bar-chart" size={24} color="#ff6347" />
           <Text style={styles.navigationButtonText}>Charts</Text>
         </TouchableOpacity>
 
         {/* OtherScreen2 navigation button */}
         <TouchableOpacity
           style={styles.navigationButton}
-          onPress={() => navigation.navigate('OtherScreen2')}>
-          <Icon name="bell" size={24} color="#fff" />
-          <Text style={styles.navigationButtonText}>Other 2</Text>
+          onPress={() => navigation.navigate('Alarm')}>
+          <Icon name="bell" size={20} color="#fff" />
+          <Text style={styles.navigationButtonText}>Alarm</Text>
         </TouchableOpacity>
 
         {/* Home navigation button */}
@@ -76,7 +185,7 @@ const ChartsScreen: React.FC<Props> = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.navigate('Home')}
             style={styles.other1Button}>
-            <Icon name="home" size={24} color="#1e90ff" />
+            <Icon name="home" size={22} color="#4267B2" />
           </TouchableOpacity>
         </View>
 
@@ -84,7 +193,7 @@ const ChartsScreen: React.FC<Props> = ({ navigation }) => {
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Profile')}>
-          <Icon name="user" size={24} color="#fff" />
+          <Icon name="user" size={20} color="#fff" />
           <Text style={styles.navigationButtonText}>Profile</Text>
         </TouchableOpacity>
 
@@ -92,16 +201,45 @@ const ChartsScreen: React.FC<Props> = ({ navigation }) => {
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Settings')}>
-          <Icon name="cog" size={24} color="#fff" />
+          <Icon name="cog" size={20} color="#fff" />
           <Text style={styles.navigationButtonText}>Settings</Text>
         </TouchableOpacity>
       </View>
+{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxx END HIỂN THỊ NÚT ĐIỀU HƯỚNG 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
     </View>
   );
 };
 
 // Styles for the HomeScreen component
 const styles = StyleSheet.create({
+  chartContainer: {
+    flexGrow: 1,
+    width: '100%',
+    paddingTop: 10, // Adjusted vertical padding for the charts
+    paddingBottom: 85, // Adjusted vertical padding for the charts
+  },
+  chart: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 20, // Horizontal padding for each chart
+    paddingVertical: 15, // Vertical padding for each chart
+    marginBottom: 10, // Margin bottom for each chart
+    borderRadius: 10, // Border radius for each chart
+    borderWidth: 1, // Border width for each chart
+    borderColor: '#ccc', // Border color for each chart
+    shadowColor: '#000', // Shadow color for each chart
+    shadowOffset: { width: 0, height: 2 }, // Shadow offset for each chart
+    shadowOpacity: 0.3, // Shadow opacity for each chart
+    shadowRadius: 2, // Shadow radius for each chart
+    elevation: 5, // Elevation for Android shadow
+  },
+  chartTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#555',
+    marginBottom: 10, // Margin bottom for the chart title
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -159,7 +297,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#1e90ff',
+    backgroundColor: '#4267B2',
     paddingHorizontal: 20, // Horizontal padding for the bottom navigation bar
     paddingVertical: 10, // Vertical padding for the bottom navigation bar
   },

@@ -127,6 +127,7 @@ const LoginScreen: React.FC = () => {
       // Đăng nhập vào Firebase với credential của Google
       await auth().signInWithCredential(googleCredential);
       // Đăng nhập thành công, chuyển hướng tới màn hình Home
+      Alert.alert('Login successful','Đăng nhập thành công!');
       navigation.navigate('Home');
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -355,7 +356,7 @@ const styles = StyleSheet.create({
   },
 
   buttonLogin: {
-    backgroundColor: '#1E90FF', // Màu nền của nút
+    backgroundColor: '#4267B2', // Màu nền của nút
     borderRadius: 5, // Bo góc
     alignItems: 'center', // Căn giữa nội dung theo chiều ngang
     justifyContent: 'center', // Căn giữa nội dung theo chiều dọc

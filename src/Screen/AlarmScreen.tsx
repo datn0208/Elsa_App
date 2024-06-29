@@ -59,16 +59,16 @@ const OtherScreen2: React.FC<Props> = ({ navigation }) => {
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Charts')}>
-          <Icon name="bar-chart" size={24} color="#fff" />
+          <Icon name="bar-chart" size={20} color="#fff" />
           <Text style={styles.navigationButtonText}>Charts</Text>
         </TouchableOpacity>
 
         {/* OtherScreen2 navigation button */}
         <TouchableOpacity
           style={styles.navigationButton}
-          onPress={() => navigation.navigate('OtherScreen2')}>
-          <Icon name="bell" size={24} color="#fff" />
-          <Text style={styles.navigationButtonText}>Other 2</Text>
+          onPress={() => navigation.navigate('Alarm')}>
+          <Icon name="bell" size={24} color="#ff6347" />
+          <Text style={styles.navigationButtonText}>Alarm</Text>
         </TouchableOpacity>
 
         {/* Home navigation button */}
@@ -76,7 +76,7 @@ const OtherScreen2: React.FC<Props> = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.navigate('Home')}
             style={styles.other1Button}>
-            <Icon name="home" size={24} color="#1e90ff" />
+            <Icon name="home" size={22} color="#4267B2" />
           </TouchableOpacity>
         </View>
 
@@ -84,7 +84,7 @@ const OtherScreen2: React.FC<Props> = ({ navigation }) => {
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Profile')}>
-          <Icon name="user" size={24} color="#fff" />
+          <Icon name="user" size={20} color="#fff" />
           <Text style={styles.navigationButtonText}>Profile</Text>
         </TouchableOpacity>
 
@@ -92,7 +92,7 @@ const OtherScreen2: React.FC<Props> = ({ navigation }) => {
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Settings')}>
-          <Icon name="cog" size={24} color="#fff" />
+          <Icon name="cog" size={20} color="#fff" />
           <Text style={styles.navigationButtonText}>Settings</Text>
         </TouchableOpacity>
       </View>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#1e90ff',
+    backgroundColor: '#4267B2',
     paddingHorizontal: 20, // Horizontal padding for the bottom navigation bar
     paddingVertical: 10, // Vertical padding for the bottom navigation bar
   },

@@ -9,7 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './src/Screen/LoginScreen'; 
 import HomeScreen from './src/Screen/HomeScreen'; 
 import ChartsScreen from './src/Screen/ChartsScreen';
-import OtherScreen2 from './src/Screen/OtherScreen2';
+import AlarmScreen from './src/Screen/AlarmScreen';
 import ProfileScreen from './src/Screen/ProfileScreen';
 import SettingsScreen from './src/Screen/SettingsScreen';
 
@@ -20,7 +20,7 @@ export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
   Charts: undefined;
-  OtherScreen2: undefined;
+  Alarm: undefined;
   Profile: undefined;
   Settings: undefined;
 };
@@ -76,10 +76,10 @@ function App() {
           }}
         />
         <Stack.Screen 
-          name="OtherScreen2" 
-          component={OtherScreen2} 
+          name="Alarm" 
+          component={AlarmScreen} 
           options={{
-                title: 'OtherScreen2',
+                title: 'Alarm',
                 headerTitleAlign: 'center',
                 headerTitleStyle: {
                   fontSize: 16, // Điều chỉnh kích thước chữ
