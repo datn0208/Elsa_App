@@ -10,6 +10,114 @@ type Props = {
 
 // Functional component for the HomeScreen
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx BEGIN ĐỌC TỐC ĐỘ
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  // Giả sử nhiệt độ là một state, bạn có thể cập nhật từ cảm biến hoặc dữ liệu khác
+  const [speed, setSpeed] = useState(undefined); // Giả sử nhiệt độ là 25 độ C
+
+  useEffect(() => {
+    // Làm một số công việc như cập nhật nhiệt độ từ cảm biến
+    // Ví dụ: fetch API, lấy dữ liệu từ cảm biến
+  }, []); // Thay đổi dependencies tùy thuộc vào cách bạn lấy dữ liệu
+
+     // Hàm xử lý khi nhiệt độ không đọc được
+  const SpeedContent = () => {
+    if (speed === undefined || speed === null) {
+      return (
+        <View style={styles.speedContainer}>
+
+        <Text style={styles.iconSpeed}>0</Text>
+          
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.speedContainer}>
+          <Text style={styles.textSpeed}>{speed}g/m3</Text>
+        </View>
+      );
+    }
+  };
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx END ĐỌC TỐC ĐỘ
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx BEGIN ĐỌC NHIÊN LIỆU
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  // Giả sử nhiệt độ là một state, bạn có thể cập nhật từ cảm biến hoặc dữ liệu khác
+  const [fuel, setFuel] = useState(undefined); // Giả sử nhiệt độ là 25 độ C
+
+  useEffect(() => {
+    // Làm một số công việc như cập nhật nhiệt độ từ cảm biến
+    // Ví dụ: fetch API, lấy dữ liệu từ cảm biến
+  }, []); // Thay đổi dependencies tùy thuộc vào cách bạn lấy dữ liệu
+
+     // Hàm xử lý khi nhiệt độ không đọc được
+  const FuelContent = () => {
+    if (fuel === undefined || fuel === null) {
+      return (
+        <View style={styles.fuelContainer}>
+          <Image
+            source={require('/home/nguyen/android_project/Elsa_App/assets/image/temperature_icon.png')}
+            style={styles.iconFuel}
+          />
+          
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.fuelContainer}>
+          <Text style={styles.textFuel}>{fuel}°C</Text>
+        </View>
+      );
+    }
+  };
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx END ĐỌC NHIÊN LIỆU
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+
+
+//------------------------------------------------------------------------
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx BEGIN ĐỌC ĐỘ ẨM
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  // Giả sử nhiệt độ là một state, bạn có thể cập nhật từ cảm biến hoặc dữ liệu khác
+  const [humidity, setHumidity] = useState(undefined); // Giả sử nhiệt độ là 25 độ C
+
+  useEffect(() => {
+    // Làm một số công việc như cập nhật nhiệt độ từ cảm biến
+    // Ví dụ: fetch API, lấy dữ liệu từ cảm biến
+  }, []); // Thay đổi dependencies tùy thuộc vào cách bạn lấy dữ liệu
+
+     // Hàm xử lý khi nhiệt độ không đọc được
+  const HumidityContent = () => {
+    if (humidity === undefined || humidity === null) {
+      return (
+        <View style={styles.weatherContainerRight}>
+          <Image
+            source={require('/home/nguyen/android_project/Elsa_App/assets/image/temperature_icon.png')}
+            style={styles.iconRight}
+          />
+          
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.weatherContainerRight}>
+          <Text style={styles.humidityRight}>{humidity}g/m3</Text>
+        </View>
+      );
+    }
+  };
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx END ĐỌC ĐỘ ẨM
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx BEGIN ĐỌC NHIỆT ĐỘ
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   // Giả sử nhiệt độ là một state, bạn có thể cập nhật từ cảm biến hoặc dữ liệu khác
   const [temperature, setTemperature] = useState(undefined); // Giả sử nhiệt độ là 25 độ C
 
@@ -17,21 +125,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     // Làm một số công việc như cập nhật nhiệt độ từ cảm biến
     // Ví dụ: fetch API, lấy dữ liệu từ cảm biến
   }, []); // Thay đổi dependencies tùy thuộc vào cách bạn lấy dữ liệu
-  
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-//xxx BEGIN CẬP NHẬT NN/MM/YY
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  const [currentTime, setCurrentTime] = useState(new Date());
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-   // Hàm xử lý khi nhiệt độ không đọc được
-  const renderContent = () => {
+     // Hàm xử lý khi nhiệt độ không đọc được
+  const TemperatureContent = () => {
     if (temperature === undefined || temperature === null) {
       return (
         <View style={styles.weatherContainerLeft}>
@@ -50,10 +146,24 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       );
     }
   };
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx END ĐỌC NHIỆT ĐỘ
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 //xxx BEGIN CẬP NHẬT NN/MM/YY
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const formattedTime = () => {
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes().toString().padStart(2, '0');
@@ -173,17 +283,51 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             ))}
           </View>    
           {/* đường line phân cách*/} 
-          <View style={styles.line}></View>  
+          <View style={styles.line1}></View>  
 
           {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
              xxxx BEGIN ĐỌC NHIỆT ĐỘ            
              xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
           <View style={styles.weatherContainerLeft}>
             <Text style={styles.temperatureLeft}>Nhiệt độ (°C)</Text>
-            {renderContent()}
+            {TemperatureContent()}
           </View>
           {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
              xxxx END ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC ĐỘ ẨM           
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.weatherContainerRight}>
+            <Text style={styles.humidityRight}>Độ ẩm (g/m3)</Text>
+            {HumidityContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC ĐỘ ẨM          
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          {/* đường line phân cách*/} 
+          <View style={styles.line2}></View> 
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.fuelContainer}>
+            <Text style={styles.textFuel}>Nhiên Liệu (lít)</Text>
+            {SpeedContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC ĐỘ ẨM           
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.speedContainer}>
+            <Text style={styles.textSpeed}>Tốc độ (km/h)</Text>
+            {FuelContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC ĐỘ ẨM          
              xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
         </View>            
       </ScrollView>
@@ -246,33 +390,106 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
 // Styles for the HomeScreen component
 const styles = StyleSheet.create({
-  errorTextLeft: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'red',
+  speedContainer: {
+    flexDirection: 'column-reverse',
+    alignItems: 'center',
+    top: 50,
+    left:110,
   },
+  iconSpeed: {
+    bottom:35,
+    left:58,
+    width: 40,
+    height: 40,
+    
+    fontSize:28,
+    fontFamily: 'digital-clock-font',
+    color:'#ff6347',
+    
+  },
+  textSpeed: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#00008b',
+    top:143,
+    right:20,
+  },
+
+//--------------------------------------------
+  fuelContainer: {
+    flexDirection: 'column-reverse',
+    alignItems: 'center',
+    top: 60,
+    right:70,
+  },
+  iconFuel: {
+    top:12,
+    right:140,
+    width: 40,
+    height: 40,
+    
+  },
+  textFuel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#00008b',
+    top:90,
+    right:20,
+  },
+
+  //-----------------------------------------------------------
+  line2: {
+    
+    width: '100%', // Chiều rộng 100% của parent
+    height: 2.2, // Độ dài 1 pixel
+    backgroundColor: 'gray', // Màu sắc đường line
+    marginVertical: 10, // Khoảng cách dọc từ đường line đến các phần tử xung quanh
+  },
+
+  weatherContainerRight: {
+    flexDirection: 'column-reverse',
+    alignItems: 'center',
+    top: 10,
+    left:110,
+  },
+  iconRight: {
+    bottom:10,
+    right:131,
+    width: 40,
+    height: 40,
+    
+  },
+  humidityRight: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#00008b',
+    top:71.8,
+    right:20,
+  },
+//------------------------------------------------------------------
   weatherContainerLeft: {
     flexDirection: 'row',
     alignItems: 'center',
     top: 10,
-    left:40,
+    left:30,
   },
   iconLeft: {
     top:30,
     right:110,
-    width: 25,
+    width: 40,
     height: 40,
     
   },
   temperatureLeft: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'blue',
+    color: '#00008b',
+
   },
-  line: {
+  line1: {
     top:10,
     width: '100%', // Chiều rộng 100% của parent
-    height: 2.2, // Độ dài 1 pixel
+    height: 3, // Độ dài 1 pixel
     backgroundColor: '#4169e1', // Màu sắc đường line
     marginVertical: 10, // Khoảng cách dọc từ đường line đến các phần tử xung quanh
   },
@@ -392,7 +609,7 @@ const styles = StyleSheet.create({
   page: {
     // khổ page
     width: 352,
-    height:450,   
+    height:560,   
     // vị trí
     backgroundColor: '#fff',
     marginBottom: 25, // Margin bottom for each chart
