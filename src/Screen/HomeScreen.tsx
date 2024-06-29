@@ -10,8 +10,17 @@ type Props = {
 
 // Functional component for the HomeScreen
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
-  // Function to truncate text if too long
+  // Giả sử nhiệt độ là một state, bạn có thể cập nhật từ cảm biến hoặc dữ liệu khác
+  const [temperature, setTemperature] = useState(undefined); // Giả sử nhiệt độ là 25 độ C
+
+  useEffect(() => {
+    // Làm một số công việc như cập nhật nhiệt độ từ cảm biến
+    // Ví dụ: fetch API, lấy dữ liệu từ cảm biến
+  }, []); // Thay đổi dependencies tùy thuộc vào cách bạn lấy dữ liệu
   
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx BEGIN CẬP NHẬT NN/MM/YY
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -21,29 +30,70 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
     return () => clearInterval(interval);
   }, []);
-  
+   // Hàm xử lý khi nhiệt độ không đọc được
+  const renderContent = () => {
+    if (temperature === undefined || temperature === null) {
+      return (
+        <View style={styles.weatherContainerLeft}>
+          <Image
+            source={require('/home/nguyen/android_project/Elsa_App/assets/image/temperature_icon.png')}
+            style={styles.iconLeft}
+          />
+          
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.weatherContainerLeft}>
+          <Text style={styles.temperatureLeft}>{temperature}°C</Text>
+        </View>
+      );
+    }
+  };
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx BEGIN CẬP NHẬT NN/MM/YY
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   const formattedTime = () => {
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-    const seconds = currentTime.getSeconds().toString().padStart(2, '0');
-    return `${hours}:${minutes}:${seconds}`;
+    // const seconds = currentTime.getSeconds().toString().padStart(2, '0');
+
+    const day = currentTime.getDate().toString().padStart(2, '0');
+    const month = (currentTime.getMonth() + 1).toString().padStart(2, '0'); // Tháng bắt đầu từ 0, cần +1 để lấy tháng đúng
+    const year = currentTime.getFullYear();
+    return `${hours}:${minutes} - ${day}/${month}/${year}`;
   };
-  // thiết lập gía trị bảng table
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx END CẬP NHẬT NN/MM/YY
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx BEGIN NHẬP BẢNG GIÁ TRỊ
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   const dataTable1 = [
     ['Biển số xe:', '77H1-52546',],
     ['Thời gian máy chủ:', formattedTime()],
-    ['Thời gian trên board:', '30'],
-    ['Độ mạnh sóng:', '22'],
+    ['Thời gian trên board:', formattedTime()],
+    ['Độ mạnh sóng:', '100% (46)'],
     
   ];
-  const dataTable2 = [
-    ['Trạng thái:', '22'],
-    ['Sim:', formattedTime()],
-    ['SD Card:', '30'],
-    ['Mã tài xế:', '22'],
-    ['GPLX:', '22'],
-    ['Trạng thái làm việc:', '22'],
+  const dataTable4 = [
+    ['Trạng thái:', 'GPS yếu'],
   ];
+  const dataTable2 = [
+    ['SIM:', formattedTime()],
+    ['SD Card:', '30(kb)'],
+    ['Mã tài xế:', 'IoTVision'],
+    ['GPLX:', 'IoTVision'],
+  ];
+  const dataTable3 = [
+    ['Trạng thái làm việc:', 'Đang tập trung'],
+  ];
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//xxx END NHẬP BẢNG GIÁ TRỊ
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
   return (  
     <View style={styles.container}>
 {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -74,6 +124,22 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             </View>
             ))}
           </View>  
+          
+          {/* Cập nhật trạng thái bảng table4 */} 
+          <View style={styles.table}>
+            {dataTable4.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign4]}>
+                <Text style={styles.textLeftAlign4}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign4]}>
+                <Text style={styles.textRightAlign4}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>
 
           {/* Cập nhật trạng thái bảng table2 */} 
           <View style={styles.table}>
@@ -90,9 +156,35 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             </View>
             ))}
           </View>    
+
+          {/* Cập nhật trạng thái bảng table3 */} 
+          <View style={styles.table}>
+            {dataTable3.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign3]}>
+                <Text style={styles.textLeftAlign3}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign3]}>
+                <Text style={styles.textRightAlign3}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>    
           {/* đường line phân cách*/} 
-          <View style={styles.line}></View>
-            
+          <View style={styles.line}></View>  
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.weatherContainerLeft}>
+            <Text style={styles.temperatureLeft}>Nhiệt độ (°C)</Text>
+            {renderContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
         </View>            
       </ScrollView>
 {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -154,12 +246,54 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
 // Styles for the HomeScreen component
 const styles = StyleSheet.create({
+  errorTextLeft: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'red',
+  },
+  weatherContainerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    top: 10,
+    left:40,
+  },
+  iconLeft: {
+    top:30,
+    right:110,
+    width: 25,
+    height: 40,
+    
+  },
+  temperatureLeft: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'blue',
+  },
   line: {
     top:10,
     width: '100%', // Chiều rộng 100% của parent
     height: 2.2, // Độ dài 1 pixel
     backgroundColor: '#4169e1', // Màu sắc đường line
     marginVertical: 10, // Khoảng cách dọc từ đường line đến các phần tử xung quanh
+  },
+  leftAlign3: {
+    alignItems: 'flex-end', // Căn trái
+  },
+  rightAlign3: {
+    alignItems: 'flex-start', // Căn phải
+  },
+  textLeftAlign3: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'black',
+    
+  },
+  textRightAlign3: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'#2e8b57',
+    left:5,
+    fontWeight: 'bold', // Văn bản in đậm
   },
   leftAlign2: {
     alignItems: 'flex-end', // Căn trái
@@ -179,6 +313,25 @@ const styles = StyleSheet.create({
     color:'black',
     left:5,
   },
+  leftAlign4: {
+    alignItems: 'flex-end', // Căn trái
+  },
+  rightAlign4: {
+    alignItems: 'flex-start', // Căn phải
+  },
+  textLeftAlign4: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'black',
+    
+  },
+  textRightAlign4: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'gray',
+    left:5,
+    fontWeight: 'bold', // Văn bản in đậm
+  },
   leftAlign1: {
     alignItems: 'flex-end', // Căn trái
   },
@@ -192,10 +345,13 @@ const styles = StyleSheet.create({
     
   },
   textRightAlign1: {
+    top:5,
     fontSize: 12,
     textAlign: 'center', // Căn chữ vào giữa ô
     color:'#ff6347',
     left:5,
+    fontFamily: 'digital-clock-font',
+     // Sử dụng font-family đã liên kết
   },
   table: {
     width: 350,
@@ -236,7 +392,7 @@ const styles = StyleSheet.create({
   page: {
     // khổ page
     width: 352,
-    height:400,   
+    height:450,   
     // vị trí
     backgroundColor: '#fff',
     marginBottom: 25, // Margin bottom for each chart

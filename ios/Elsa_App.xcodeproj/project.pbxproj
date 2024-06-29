@@ -14,6 +14,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-Elsa_App-Elsa_AppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Elsa_App-Elsa_AppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		63D6503F775C4C8583A00994 /* digital-7 (italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FE06A2C710E4C88B125641A /* digital-7 (italic).ttf */; };
+		00D2BCEEFCF346FBA9D02BF1 /* digital-7 (mono italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB8FFA431EC4CE285A19040 /* digital-7 (mono italic).ttf */; };
+		5D484B4D1BBB4A1888AD158E /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F8B345F5A59413D92DEFAC0 /* digital-7 (mono).ttf */; };
+		7E21540628574756B8EB9F81 /* digital-clock-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF525C70A14E469BBA588C5A /* digital-clock-font.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Elsa_App/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Elsa_App/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Elsa_App/main.m; sourceTree = "<group>"; };
-	    13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Elsa_App/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Elsa_App/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Elsa_App-Elsa_AppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Elsa_App-Elsa_AppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-Elsa_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elsa_App.debug.xcconfig"; path = "Target Support Files/Pods-Elsa_App/Pods-Elsa_App.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Elsa_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elsa_App.release.xcconfig"; path = "Target Support Files/Pods-Elsa_App/Pods-Elsa_App.release.xcconfig"; sourceTree = "<group>"; };
@@ -45,6 +49,10 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Elsa_App/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Elsa_App-Elsa_AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elsa_App-Elsa_AppTests.release.xcconfig"; path = "Target Support Files/Pods-Elsa_App-Elsa_AppTests/Pods-Elsa_App-Elsa_AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		3FE06A2C710E4C88B125641A /* digital-7 (italic).ttf */ = {isa = PBXFileReference; name = "digital-7 (italic).ttf"; path = "../assets/fonts/digital-7 (italic).ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9EB8FFA431EC4CE285A19040 /* digital-7 (mono italic).ttf */ = {isa = PBXFileReference; name = "digital-7 (mono italic).ttf"; path = "../assets/fonts/digital-7 (mono italic).ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9F8B345F5A59413D92DEFAC0 /* digital-7 (mono).ttf */ = {isa = PBXFileReference; name = "digital-7 (mono).ttf"; path = "../assets/fonts/digital-7 (mono).ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BF525C70A14E469BBA588C5A /* digital-clock-font.ttf */ = {isa = PBXFileReference; name = "digital-clock-font.ttf"; path = "../assets/fonts/digital-clock-font.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				50285B5F06EF4FB2BE523C91 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +158,18 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		50285B5F06EF4FB2BE523C91 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				3FE06A2C710E4C88B125641A /* digital-7 (italic).ttf */,
+				9EB8FFA431EC4CE285A19040 /* digital-7 (mono italic).ttf */,
+				9F8B345F5A59413D92DEFAC0 /* digital-7 (mono).ttf */,
+				BF525C70A14E469BBA588C5A /* digital-clock-font.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +266,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				63D6503F775C4C8583A00994 /* digital-7 (italic).ttf in Resources */,
+				00D2BCEEFCF346FBA9D02BF1 /* digital-7 (mono italic).ttf in Resources */,
+				5D484B4D1BBB4A1888AD158E /* digital-7 (mono).ttf in Resources */,
+				7E21540628574756B8EB9F81 /* digital-clock-font.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
