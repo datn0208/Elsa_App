@@ -29,12 +29,20 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     return `${hours}:${minutes}:${seconds}`;
   };
   // thiết lập gía trị bảng table
-  const data = [
-  ['Biển số xe:', '77H1-52546',],
+  const dataTable1 = [
+    ['Biển số xe:', '77H1-52546',],
     ['Thời gian máy chủ:', formattedTime()],
     ['Thời gian trên board:', '30'],
     ['Độ mạnh sóng:', '22'],
+    
+  ];
+  const dataTable2 = [
     ['Trạng thái:', '22'],
+    ['Sim:', formattedTime()],
+    ['SD Card:', '30'],
+    ['Mã tài xế:', '22'],
+    ['GPLX:', '22'],
+    ['Trạng thái làm việc:', '22'],
   ];
   return (  
     <View style={styles.container}>
@@ -42,6 +50,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   xxx  BEGIN THÀNH LẬP TRANG CHO TỪNG TAG FUNCTION
   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
       <ScrollView contentContainerStyle={styles.pageContainer}>
+
         {/* Cập nhật trạng thái hệ thống */}
         <View style={styles.page}> 
           <Image source={require('/home/nguyen/android_project/Elsa_App/assets/image/Logo_IoTVisionc_Final_01.png')} style={styles.logo} />             
@@ -49,21 +58,41 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             
             <Text style={styles.clockText}>{formattedTime()}</Text>
           </View>
-          {/* Cập nhật trạng thái bảng table */} 
+
+          {/* Cập nhật trạng thái bảng table1 */} 
           <View style={styles.table}>
-            {data.map((row, rowIndex) => (
+            {dataTable1.map((row, rowIndex) => (
               <View key={rowIndex} style={styles.row}>
               {/* Cột 1: Căn trái */}
-              <View style={[styles.cell, styles.leftAlign]}>
-                <Text style={styles.textLeftAlign}>{row[0]}</Text>
+              <View style={[styles.cell, styles.leftAlign1]}>
+                <Text style={styles.textLeftAlign1}>{row[0]}</Text>
               </View>
               {/* Cột 2: Căn phải */}
-              <View style={[styles.cell, styles.rightAlign]}>
-                <Text style={styles.textRightAlign}>{row[1]}</Text>
+              <View style={[styles.cell, styles.rightAlign1]}>
+                <Text style={styles.textRightAlign1}>{row[1]}</Text>
               </View>
             </View>
             ))}
-          </View>         
+          </View>  
+
+          {/* Cập nhật trạng thái bảng table2 */} 
+          <View style={styles.table}>
+            {dataTable2.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign2]}>
+                <Text style={styles.textLeftAlign2}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign2]}>
+                <Text style={styles.textRightAlign2}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>    
+          {/* đường line phân cách*/} 
+          <View style={styles.line}></View>
+            
         </View>            
       </ScrollView>
 {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -125,21 +154,48 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
 // Styles for the HomeScreen component
 const styles = StyleSheet.create({
-  leftAlign: {
+  line: {
+    top:10,
+    width: '100%', // Chiều rộng 100% của parent
+    height: 2.2, // Độ dài 1 pixel
+    backgroundColor: '#4169e1', // Màu sắc đường line
+    marginVertical: 10, // Khoảng cách dọc từ đường line đến các phần tử xung quanh
+  },
+  leftAlign2: {
     alignItems: 'flex-end', // Căn trái
   },
-  rightAlign: {
+  rightAlign2: {
     alignItems: 'flex-start', // Căn phải
   },
-  textLeftAlign: {
+  textLeftAlign2: {
     fontSize: 12,
     textAlign: 'center', // Căn chữ vào giữa ô
     color:'black',
+    
   },
-  textRightAlign: {
+  textRightAlign2: {
     fontSize: 12,
     textAlign: 'center', // Căn chữ vào giữa ô
-    color:'#0000cd',
+    color:'black',
+    left:5,
+  },
+  leftAlign1: {
+    alignItems: 'flex-end', // Căn trái
+  },
+  rightAlign1: {
+    alignItems: 'flex-start', // Căn phải
+  },
+  textLeftAlign1: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'black',
+    
+  },
+  textRightAlign1: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'#ff6347',
+    left:5,
   },
   table: {
     width: 350,
@@ -180,7 +236,7 @@ const styles = StyleSheet.create({
   page: {
     // khổ page
     width: 352,
-    height:352,   
+    height:400,   
     // vị trí
     backgroundColor: '#fff',
     marginBottom: 25, // Margin bottom for each chart
