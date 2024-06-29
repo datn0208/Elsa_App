@@ -12,7 +12,7 @@ import ChartsScreen from './src/Screen/ChartsScreen';
 import AlarmScreen from './src/Screen/AlarmScreen';
 import ProfileScreen from './src/Screen/ProfileScreen';
 import SettingsScreen from './src/Screen/SettingsScreen';
-
+import LoadingScreen from './src/Screen/LoadingScreen';
 
 
 // định nghĩa các tham số màn hình cho StackNavigator
@@ -23,6 +23,7 @@ export type RootStackParamList = {
   Alarm: undefined;
   Profile: undefined;
   Settings: undefined;
+  Loading : undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -108,6 +109,20 @@ function App() {
           component={SettingsScreen} 
           options={{
                 title: 'Settings',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                  fontSize: 16, // Điều chỉnh kích thước chữ
+                  fontWeight: 'bold', // Điều chỉnh độ đậm của chữ
+                  fontFamily: 'Arial-custom-font',
+                  // Nếu cần thiết, bạn có thể thêm các thuộc tính khác như fontFamily, color, ...
+                },
+          }}
+        />
+        <Stack.Screen 
+          name="Loading" 
+          component={LoadingScreen} 
+          options={{
+                title: 'Loading',
                 headerTitleAlign: 'center',
                 headerTitleStyle: {
                   fontSize: 16, // Điều chỉnh kích thước chữ

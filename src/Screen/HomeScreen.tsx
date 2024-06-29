@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView ,Dimensions} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView ,Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -28,54 +28,52 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     const seconds = currentTime.getSeconds().toString().padStart(2, '0');
     return `${hours}:${minutes}:${seconds}`;
   };
+  // thiết lập gía trị bảng table
+  const data = [
+  ['Biển số xe:', '77H1-52546',],
+    ['Thời gian máy chủ:', formattedTime()],
+    ['Thời gian trên board:', '30'],
+    ['Độ mạnh sóng:', '22'],
+    ['Trạng thái:', '22'],
+  ];
   return (  
     <View style={styles.container}>
-    {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-       xxx  BEGIN THÀNH LẬP TRANG CHO TỪNG TAG FUNCTION
-       xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+{/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  xxx  BEGIN THÀNH LẬP TRANG CHO TỪNG TAG FUNCTION
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
       <ScrollView contentContainerStyle={styles.pageContainer}>
         {/* Cập nhật trạng thái hệ thống */}
-        <View style={styles.page}>
-          <Text style={styles.pageTitle}>Temperature Trends</Text>
-            <View style={styles.clockContainer}>
-              <Text style={styles.clockText}>Thời gian:</Text>
-              <Text style={styles.clockText}>{formattedTime()}</Text>
+        <View style={styles.page}> 
+          <Image source={require('/home/nguyen/android_project/Elsa_App/assets/image/Logo_IoTVisionc_Final_01.png')} style={styles.logo} />             
+          <View style={styles.clockContainer}>
+            
+            <Text style={styles.clockText}>{formattedTime()}</Text>
+          </View>
+          {/* Cập nhật trạng thái bảng table */} 
+          <View style={styles.table}>
+            {data.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign]}>
+                <Text style={styles.textLeftAlign}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign]}>
+                <Text style={styles.textRightAlign}>{row[1]}</Text>
+              </View>
             </View>
-            <View style={styles.clockContainer}>
-              <Text style={styles.pageTitle}>Temperature Trends</Text>
-            </View>
-        </View>     
-
-        <View style={styles.page}>
-          <Text style={styles.pageTitle}>Temperature Trends</Text>
-            <View style={styles.clockContainer}>
-              <Text style={styles.clockText}>Thời gian:</Text>
-              <Text style={styles.clockText}>{formattedTime()}</Text>
-            </View>
-            <View style={styles.clockContainer}>
-              <Text style={styles.pageTitle}>Temperature Trends</Text>
-            </View>
-        </View>  
-
-        <View style={styles.page}>
-          <Text style={styles.pageTitle}>Temperature Trends</Text>
-            <View style={styles.clockContainer}>
-              <Text style={styles.clockText}>Thời gian:</Text>
-              <Text style={styles.clockText}>{formattedTime()}</Text>
-            </View>
-            <View style={styles.clockContainer}>
-              <Text style={styles.pageTitle}>Temperature Trends</Text>
-            </View>
-        </View>     
+            ))}
+          </View>         
+        </View>            
       </ScrollView>
-    {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-       xxx  END THÀNH LẬP TRANG CHO TỪNG TAG FUNCTION
-       xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+{/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  xxx  END THÀNH LẬP TRANG CHO TỪNG TAG FUNCTION
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
 
 
-    {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-       xxx  BEGIN NÚT ĐIỀU HƯỚNG CÁC SCREEN
-       xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+{/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  xxx  BEGIN NÚT ĐIỀU HƯỚNG CÁC SCREEN
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
       <View style={styles.bottomNavigation}>
         {/* Home navigation button */}
         <View style={styles.centeredNavigationButton}>
@@ -86,7 +84,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        {/* Charts navigation button */}
+        {/* Charts navigation Charts */}
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Charts')}>
@@ -94,7 +92,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.navigationButtonText}>Charts</Text>
         </TouchableOpacity>
 
-        {/* Alarm navigation button */}
+        {/* Alarm navigation Alarm */}
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Alarm')}>
@@ -102,7 +100,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.navigationButtonText}>Alarm</Text>
         </TouchableOpacity>
 
-        {/* Profile navigation button */}
+        {/* Profile navigation Profile */}
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Profile')}>
@@ -110,7 +108,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.navigationButtonText}>Profile</Text>
         </TouchableOpacity>
 
-        {/* Settings navigation button */}
+        {/* Settings navigation Settings */}
         <TouchableOpacity
           style={styles.navigationButton}
           onPress={() => navigation.navigate('Settings')}>
@@ -118,15 +116,50 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.navigationButtonText}>Settings</Text>
         </TouchableOpacity>
       </View>
-      {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-       xxx  END NÚT ĐIỀU HƯỚNG CHO CÁC SCREEN
-       xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+{/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  xxx  END NÚT ĐIỀU HƯỚNG CÁC SCREEN
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
     </View>
   );
 };
 
 // Styles for the HomeScreen component
 const styles = StyleSheet.create({
+  leftAlign: {
+    alignItems: 'flex-end', // Căn trái
+  },
+  rightAlign: {
+    alignItems: 'flex-start', // Căn phải
+  },
+  textLeftAlign: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'black',
+  },
+  textRightAlign: {
+    fontSize: 12,
+    textAlign: 'center', // Căn chữ vào giữa ô
+    color:'#0000cd',
+  },
+  table: {
+    width: 350,
+    
+    top: 13,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  cell: {
+    flex: 1,
+    padding: 2,
+  },
+  logo:{
+    width: 150, //điêu chỉnh kích thước logo tùy theo yêu cầu
+    height: 40,
+    marginBottom: 10,
+    top:10,
+    left:10,
+  },
   clockContainer: {
     position: 'absolute',
     top: 10, // Adjust top position as needed
@@ -145,10 +178,12 @@ const styles = StyleSheet.create({
     paddingBottom: 85, // Adjusted vertical padding for the charts
   },
   page: {
+    // khổ page
+    width: 352,
+    height:352,   
+    // vị trí
     backgroundColor: '#fff',
-    paddingHorizontal: 110, // Horizontal padding for each chart
-    paddingVertical: 110, // Vertical padding for each chart
-    marginBottom: 10, // Margin bottom for each chart
+    marginBottom: 25, // Margin bottom for each chart
     borderRadius: 10, // Border radius for each chart
     borderWidth: 1, // Border width for each chart
     borderColor: '#ccc', // Border color for each chart
@@ -157,12 +192,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3, // Shadow opacity for each chart
     shadowRadius: 2, // Shadow radius for each chart
     elevation: 5, // Elevation for Android shadow
+    
   },
   pageTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#555',
-    marginBottom: 10, // Margin bottom for the chart title
+    marginLeft: 20, // Margin bottom for the chart title
   },
   container: {
     flex: 1,
