@@ -211,7 +211,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
       <ScrollView contentContainerStyle={styles.pageContainer}>
 
-        {/* Cập nhật trạng thái hệ thống */}
+{/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    =================== BEGIN PAGE 1=========================
+    ========================================================= */}
         <View style={styles.page}> 
           <Image source={require('/home/nguyen/android_project/Elsa_App/assets/image/Logo_IoTVisionc_Final_01.png')} style={styles.logo} />             
           <View style={styles.clockContainer}>
@@ -329,7 +331,250 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
              xxxx END ĐỌC ĐỘ ẨM          
              xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
-        </View>            
+        </View>
+
+{/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    =================== BEGIN PAGE 2=========================
+    ========================================================= */}
+        <View style={styles.page}> 
+          <Image source={require('/home/nguyen/android_project/Elsa_App/assets/image/Logo_IoTVisionc_Final_01.png')} style={styles.logo} />             
+          <View style={styles.clockContainer}>
+            
+            <Text style={styles.clockText}>{formattedTime()}</Text>
+          </View>
+
+          {/* Cập nhật trạng thái bảng table1 */} 
+          <View style={styles.table}>
+            {dataTable1.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign1]}>
+                <Text style={styles.textLeftAlign1}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign1]}>
+                <Text style={styles.textRightAlign1}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>  
+          
+          {/* Cập nhật trạng thái bảng table4 */} 
+          <View style={styles.table}>
+            {dataTable4.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign4]}>
+                <Text style={styles.textLeftAlign4}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign4]}>
+                <Text style={styles.textRightAlign4}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>
+
+          {/* Cập nhật trạng thái bảng table2 */} 
+          <View style={styles.table}>
+            {dataTable2.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign2]}>
+                <Text style={styles.textLeftAlign2}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign2]}>
+                <Text style={styles.textRightAlign2}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>    
+
+          {/* Cập nhật trạng thái bảng table3 */} 
+          <View style={styles.table}>
+            {dataTable3.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign3]}>
+                <Text style={styles.textLeftAlign3}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign3]}>
+                <Text style={styles.textRightAlign3}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>    
+          {/* đường line phân cách*/} 
+          <View style={styles.line1}></View>  
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.weatherContainerLeft}>
+            <Text style={styles.temperatureLeft}>Nhiệt độ (°C)</Text>
+            {TemperatureContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC ĐỘ ẨM           
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.weatherContainerRight}>
+            <Text style={styles.humidityRight}>Độ ẩm (g/m3)</Text>
+            {HumidityContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC ĐỘ ẨM          
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          {/* đường line phân cách*/} 
+          <View style={styles.line2}></View> 
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.fuelContainer}>
+            <Text style={styles.textFuel}>Nhiên Liệu (lít)</Text>
+            {SpeedContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC ĐỘ ẨM           
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.speedContainer}>
+            <Text style={styles.textSpeed}>Tốc độ (km/h)</Text>
+            {FuelContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC ĐỘ ẨM          
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+        </View>
+{/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    =================== BEGIN PAGE 3=========================
+    ========================================================= */}
+        <View style={styles.page}> 
+          <Image source={require('/home/nguyen/android_project/Elsa_App/assets/image/Logo_IoTVisionc_Final_01.png')} style={styles.logo} />             
+          <View style={styles.clockContainer}>
+            
+            <Text style={styles.clockText}>{formattedTime()}</Text>
+          </View>
+
+          {/* Cập nhật trạng thái bảng table1 */} 
+          <View style={styles.table}>
+            {dataTable1.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign1]}>
+                <Text style={styles.textLeftAlign1}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign1]}>
+                <Text style={styles.textRightAlign1}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>  
+          
+          {/* Cập nhật trạng thái bảng table4 */} 
+          <View style={styles.table}>
+            {dataTable4.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign4]}>
+                <Text style={styles.textLeftAlign4}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign4]}>
+                <Text style={styles.textRightAlign4}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>
+
+          {/* Cập nhật trạng thái bảng table2 */} 
+          <View style={styles.table}>
+            {dataTable2.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign2]}>
+                <Text style={styles.textLeftAlign2}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign2]}>
+                <Text style={styles.textRightAlign2}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>    
+
+          {/* Cập nhật trạng thái bảng table3 */} 
+          <View style={styles.table}>
+            {dataTable3.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+              {/* Cột 1: Căn trái */}
+              <View style={[styles.cell, styles.leftAlign3]}>
+                <Text style={styles.textLeftAlign3}>{row[0]}</Text>
+              </View>
+              {/* Cột 2: Căn phải */}
+              <View style={[styles.cell, styles.rightAlign3]}>
+                <Text style={styles.textRightAlign3}>{row[1]}</Text>
+              </View>
+            </View>
+            ))}
+          </View>    
+          {/* đường line phân cách*/} 
+          <View style={styles.line1}></View>  
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.weatherContainerLeft}>
+            <Text style={styles.temperatureLeft}>Nhiệt độ (°C)</Text>
+            {TemperatureContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC ĐỘ ẨM           
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.weatherContainerRight}>
+            <Text style={styles.humidityRight}>Độ ẩm (g/m3)</Text>
+            {HumidityContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC ĐỘ ẨM          
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          {/* đường line phân cách*/} 
+          <View style={styles.line2}></View> 
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.fuelContainer}>
+            <Text style={styles.textFuel}>Nhiên Liệu (lít)</Text>
+            {SpeedContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC NHIỆT ĐỘ            
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx BEGIN ĐỌC ĐỘ ẨM           
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+          <View style={styles.speedContainer}>
+            <Text style={styles.textSpeed}>Tốc độ (km/h)</Text>
+            {FuelContent()}
+          </View>
+          {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             xxxx END ĐỌC ĐỘ ẨM          
+             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/}
+        </View>                
       </ScrollView>
 {/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   xxx  END THÀNH LẬP TRANG CHO TỪNG TAG FUNCTION
